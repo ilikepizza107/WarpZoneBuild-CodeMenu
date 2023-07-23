@@ -276,9 +276,9 @@ void CodeMenu()
 	//main page
 	vector<Line*> MainLines;
 #if DOLPHIN_BUILD
-	MainLines.push_back(new Comment("NEPM Build Netplay Code Menu", &MENU_TITLE_CHECK_LOCATION));
+	MainLines.push_back(new Comment("Warp Zone Netplay Code Menu", &MENU_TITLE_CHECK_LOCATION));
 #else
-	MainLines.push_back(new Comment("NEPM Build Code Menu", &MENU_TITLE_CHECK_LOCATION));
+	MainLines.push_back(new Comment("Warp Zone Code Menu", &MENU_TITLE_CHECK_LOCATION));
 #endif
 
 	MainLines.push_back(new Comment("X = Reset Selection | Y = Reset Page"));
@@ -291,9 +291,9 @@ void CodeMenu()
 	
 	MainLines.push_back(&DebugMode.CalledFromLine);
 #if DOLPHIN_BUILD
-	MainLines.push_back(new Selection("Stagelist", { "2023 Singles", "2023 Doubles", "Middle 3", "PMBR" }, 0, STAGELIST_INDEX));
+	MainLines.push_back(new Selection("Stagelist", { "2023 Singles", "2023 Doubles", "Middle 3" }, 0, STAGELIST_INDEX));
 #else
-	MainLines.push_back(new Selection("Stagelist", { "2023 Singles", "2023 Doubles", "Middle 3", "PMBR" }, 0, STAGELIST_INDEX));
+	MainLines.push_back(new Selection("Stagelist", { "2023 Singles", "2023 Doubles", "Middle 3" }, 0, STAGELIST_INDEX));
 #endif
 	constantOverrides.emplace_back(0x80523400, STAGELIST_INDEX);
 	//	MainLines.push_back(new Selection("Endless Friendlies", { "OFF", "Same Stage", "Random Stage", "Round Robin" }, 0, INFINITE_FRIENDLIES_INDEX));
@@ -999,7 +999,7 @@ void ControlCodeMenu()
 	//Prevents Code Menu from booting if it doesn't match a specified string (lol)
 #if BUILD_TYPE == PROJECT_PLUS
 	LoadHalfToReg(Reg1, MENU_TITLE_CHECK_LOCATION + 7 + Line::COMMENT_LINE_TEXT_START);
-	If(Reg1, NOT_EQUAL_I_L, 0x696c); //il
+	If(Reg1, NOT_EQUAL_I_L, 0x6e65); //ne
 	{
 		JumpToLabel(NotLoaded);
 	}EndIf();
